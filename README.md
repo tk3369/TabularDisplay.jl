@@ -17,7 +17,7 @@ Display a vector of things in a tabular format.
 
 Assuming a 80-column terminal screen:
 
-```
+```julia
 1---------2---------3---------4---------5---------6---------7---------8---------
 julia> displaytable(STDOUT, [string("randomstr", i) for i in 1:16])
 randomstr1   randomstr4   randomstr7   randomstr10  randomstr13  randomstr16  
