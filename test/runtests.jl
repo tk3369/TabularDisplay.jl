@@ -1,5 +1,5 @@
 using TabularDisplay
-using Test
+using Compat.Test
 
 io = IOBuffer()
 
