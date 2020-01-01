@@ -1,0 +1,17 @@
+name = "TabularDisplay"
+uuid = "3eeacb1d-13c2-54cc-9b18-30c86af3cadb"
+authors = ["Tom Kwong <tk3369@gmail.com>"]
+version = "1.0.2"
+
+[deps]
+Formatting = "59287772-0a20-5a39-b81b-1366585eb4c0"
+
+[compat]
+Formatting = "0.4"
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
