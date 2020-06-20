@@ -19,7 +19,7 @@ Assuming a 80-column terminal screen:
 
 ```julia
 1---------2---------3---------4---------5---------6---------7---------8---------
-julia> displaytable(STDOUT, [string("randomstr", i) for i in 1:16])
+julia> displaytable(stdout, [string("randomstr", i) for i in 1:16])
 randomstr1   randomstr4   randomstr7   randomstr10  randomstr13  randomstr16  
 randomstr2   randomstr5   randomstr8   randomstr11  randomstr14               
 randomstr3   randomstr6   randomstr9   randomstr12  randomstr15               
