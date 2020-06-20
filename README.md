@@ -29,7 +29,7 @@ julia> using Formatting
 julia> foo = generate_formatter("%7.5f")
 (::#5) (generic function with 1 method)
 
-julia> displaytable(STDOUT, rand(35); padding=5, align=:right, formatter=foo, index=true, indexsep=" -> ")
+julia> displaytable(stdout, rand(35); padding=5, align=:right, formatter=foo, index=true, indexsep=" -> ")
       1 -> 0.08425     10 -> 0.51280     19 -> 0.71986     28 -> 0.50921
       2 -> 0.22630     11 -> 0.83040     20 -> 0.95942     29 -> 0.78327
       3 -> 0.99681     12 -> 0.17092     21 -> 0.80820     30 -> 0.34046
