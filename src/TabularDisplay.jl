@@ -25,7 +25,7 @@ foo = generate_formatter("%7.5f")
 displaytable(STDOUT, rand(100); padding=5, align=:right, formatter=foo, index=true, indexsep=" -> ")
 ```
 """
-function displaytable(io::IO, v::Vector{T}; 
+function displaytable(io::IO, v::AbstractVector{T}; 
             padding = 2, 
             index = false,
             indexsep = ":", 
@@ -71,7 +71,7 @@ function displaytable(io::IO, v::Vector{T};
     end
 end
 
-function prependindex(v::Vector{String}, sep::String)
+function prependindex(v::AbstractVector{T}, sep::String) where T
     [string(i, sep, v[i]) for i in 1:length(v)]
 end
 
