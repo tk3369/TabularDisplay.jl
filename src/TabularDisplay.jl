@@ -5,9 +5,12 @@ using Formatting
 export displaytable
 
 """
-Display a vector of things in a tabular format.  
+    displaytable([io::IO], v::AbstractVector{T}; kwargs...)
 
-*Keyword arguments*
+Display a vector of things in a compact tabular format.
+The `io` argument is defaulted to `stdout`.
+
+# Keyword arguments
 - padding: minimum number of spaces between column data. Default value is 2.
 - index: prepend cell values with indices. Default value is `false`.
 - indexsep: string that separate index and cell values.  Default value is `:`.
@@ -16,20 +19,26 @@ Display a vector of things in a tabular format.
 - formatter: custom formatter that takes a value and returns a string.  Default value is `string` function.
 - displaywidth: custom display width.  Default value is 0, for which the system will use the terminal's size.
 
-*Examples*
+# Examples
 ```
-displaytable(STDOUT, [string("randomstr", i) for i in 1:56])
+displaytable([string("randomstr", i) for i in 1:56])
 
 using Formatting
 foo = generate_formatter("%7.5f")
-displaytable(STDOUT, rand(100); padding=5, align=:right, formatter=foo, index=true, indexsep=" -> ")
+displaytable(rand(100); padding=5, align=:right, formatter=foo, index=true, indexsep=" -> ")
 ```
 """
-function displaytable(io::IO, v::AbstractVector{T}; 
-            padding = 2, 
+function displaytable end
+
+function displaytable(v::AbstractVector{T}; kwargs...) where T
+    return displaytable(stdout, v; kwargs...)
+end
+
+function displaytable(io::IO, v::Vector{T};
+            padding = 2,
             index = false,
-            indexsep = ":", 
-            align = :left, 
+            indexsep = ":",
+            align = :left,
             orientation = :column,
             formatter = string,
             displaywidth = 0,
@@ -42,7 +51,7 @@ function displaytable(io::IO, v::AbstractVector{T};
     end
 
     # Calculate number of rows and columns required
-    rowwidth = displaywidth > 0 ? displaywidth : displaysize(io)[2] 
+    rowwidth = displaywidth > 0 ? displaywidth : displaysize(io)[2]
     #rowwidth -= 1    # at least one space from right margin
     cellwidth = maximum(length.(ar)) + padding
     rowwidth < cellwidth && error("The value for displaywidth is too small. Please specify a value larger than $cellwidth.")
@@ -51,7 +60,7 @@ function displaytable(io::IO, v::AbstractVector{T};
 
     # Generate cell and row format string
     cellfmt = string("{:", align == :left ? "<" : ">", string(cellwidth), "s}")
-    rowfmt = repeat(cellfmt, columns) 
+    rowfmt = repeat(cellfmt, columns)
 
     # Copy the array and append it with blanks for remaining cells
     # This is done to make the loop below easier
