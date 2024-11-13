@@ -1,6 +1,6 @@
 module TabularDisplay
 
-using Formatting
+using Format
 
 export displaytable
 
