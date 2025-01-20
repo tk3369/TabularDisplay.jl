@@ -30,19 +30,19 @@ displaytable(rand(100); padding=5, align=:right, formatter=foo, index=true, inde
 """
 function displaytable end
 
-function displaytable(v::AbstractVector{T}; kwargs...) where T
+function displaytable(v::AbstractVector{T}; kwargs...) where {T}
     return displaytable(stdout, v; kwargs...)
 end
 
 function displaytable(io::IO, v::Vector{T};
-            padding = 2,
-            index = false,
-            indexsep = ":",
-            align = :left,
-            orientation = :column,
-            formatter = string,
-            displaywidth = 0,
-        ) where T
+    padding=4,
+    index=false,
+    indexsep=":",
+    align=:left,
+    orientation=:column,
+    formatter=string,
+    displaywidth=0,
+) where {T}
 
     # convert vector to strings and prepend with index if needed
     ar = formatter.(v)
@@ -80,7 +80,7 @@ function displaytable(io::IO, v::Vector{T};
     end
 end
 
-function prependindex(v::AbstractVector{T}, sep::String) where T
+function prependindex(v::AbstractVector{T}, sep::String) where {T}
     [string(i, sep, v[i]) for i in 1:length(v)]
 end
 
