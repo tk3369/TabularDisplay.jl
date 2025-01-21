@@ -27,7 +27,7 @@ randomstr1   randomstr4   randomstr7   randomstr10  randomstr13  randomstr16
 randomstr2   randomstr5   randomstr8   randomstr11  randomstr14               
 randomstr3   randomstr6   randomstr9   randomstr12  randomstr15               
 
-julia> using Formatting
+julia> using Format
 
 julia> foo = generate_formatter("%7.5f")
 (::#5) (generic function with 1 method)
